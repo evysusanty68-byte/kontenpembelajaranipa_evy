@@ -1,0 +1,285 @@
+/* RESET & VARIABLE LAYAR IFP */
+:root {
+  --primary-color: #2c3e50;
+  --accent-color: #2980b9;
+  --secondary-color: #27ae60;
+  --warning-color: #e74c3c;
+  --bg-color: #f4f7f6;
+  --card-bg: #ffffff;
+  --text-color: #333333;
+  --font-size-large: 1.4rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  user-select: none; /* Mencegah seleksi teks saat disentuh berulang di IFP */
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+header {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #bdc3c7;
+}
+
+/* MAIN NAVIGATION (TOMBOL BESAR UNTUK JARI/STYLUS) */
+.main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #ecf0f1;
+}
+
+.nav-btn {
+  padding: 18px 28px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  border: 3px solid transparent;
+  border-radius: 12px;
+  background-color: white;
+  color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.2s ease;
+}
+
+.nav-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+  border-color: #1c5980;
+}
+
+.nav-btn:active {
+  transform: scale(0.96);
+}
+
+/* CONTAINER UTAMA */
+.content-container {
+  flex: 1;
+  padding: 30px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  border-bottom: 4px solid var(--accent-color);
+  padding-bottom: 8px;
+  display: inline-block;
+}
+
+/* CARD & GRID */
+.card-large {
+  background-color: var(--card-bg);
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  font-size: var(--font-size-large);
+  line-height: 1.6;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.touch-card {
+  background-color: white;
+  padding: 25px;
+  border-radius: 16px;
+  border-left: 8px solid var(--accent-color);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.touch-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.touch-card h4 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: var(--primary-color);
+}
+
+.touch-card p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+/* SUB NAVIGATION (KATEGORI) */
+.sub-nav {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.sub-btn {
+  padding: 12px 24px;
+  font-size: 1.2rem;
+  border: 2px solid var(--accent-color);
+  border-radius: 8px;
+  background-color: white;
+  color: var(--accent-color);
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sub-btn.active {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* ALERT & INFO BOX */
+.alert-card {
+  background-color: #fff5f5;
+  border: 2px solid #feb2b2;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+}
+
+.alert-card .icon {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.alert-card h4 {
+  color: var(--warning-color);
+  font-size: 1.3rem;
+  margin-bottom: 8px;
+}
+
+.info-box {
+  background-color: #e8f8f5;
+  border-left: 6px solid var(--secondary-color);
+  padding: 20px;
+  border-radius: 8px;
+  font-size: 1.3rem;
+}
+
+/* KUIS INTERAKTIF */
+.question {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: var(--primary-color);
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+.option-btn {
+  padding: 20px;
+  font-size: 1.3rem;
+  text-align: left;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.option-btn:hover {
+  background-color: #e0e0e0;
+}
+
+.option-btn.correct {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+  font-weight: bold;
+}
+
+.option-btn.wrong {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.feedback-msg {
+  margin-top: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.action-btn {
+  margin-top: 20px;
+  padding: 15px 30px;
+  font-size: 1.3rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1rem;
+}
+
+/* RESPONSIVITAS TAMBAHAN */
+@media (max-width: 900px) {
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .main-nav {
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,155 @@
+// Data Kategori Zat Aditif
+const categoriesData = {
+  pewarna: {
+    alami: "Kunyit (Kuning), Daun Suji/Pandan (Hijau), Buah Naga (Merah), Wortel (Oranye).",
+    buatan: "Tartrazin (Kuning), Fast Green FCF (Hijau), Rhodamin B (Pewarna Tekstil - Berbahaya!)."
+  },
+  pemanis: {
+    alami: "Gula Pasir, Gula Merah/Jawa, Madu, Gula Aren.",
+    buatan: "Sakarin, Aspartam, Siklamat, Sorbitol."
+  },
+  pengawet: {
+    alami: "Garam Dapur (Pengasinan), Gula (Manisan), Cuka.",
+    buatan: "Natrium Benzoat, Asam Propionat, Formalin & Boraks (Dilarang untuk Makanan!)."
+  },
+  penyedap: {
+    alami: "Garam, Bawang Putih, Bawang Merah, Ketumbar, Merica.",
+    buatan: "Monosodium Glutamat (MSG / Vetsin), Hidrolisis Protein Nabati."
+  }
+};
+
+// Data Kuis
+const quizData = [
+  {
+    question: "Manakah di bawah ini yang merupakan contoh pewarna ALAMI?",
+    options: ["A. Tartrazin", "B. Ekstrak Kunyit", "C. Rhodamin B", "D. Fast Green FCF"],
+    answer: 1
+  },
+  {
+    question: "Zat pengawet berbahaya yang DILARANG digunakan pada makanan adalah...",
+    options: ["A. Natrium Benzoat", "B. Garam Dapur", "C. Formalin", "D. Asam Benzoat"],
+    answer: 2
+  },
+  {
+    question: "Pemanis buatan yang aman jika dikonsumsi sesuai batas yang ditentukan adalah...",
+    options: ["A. Gula Jawa", "B. Aspartam", "C. Buah Naga", "D. Madu"],
+    answer: 1
+  }
+];
+
+let currentQuizIndex = 0;
+let score = 0;
+
+// Perpindahan Tab Utama
+function switchTab(tabId) {
+  const tabs = document.querySelectorAll('.tab-content');
+  const buttons = document.querySelectorAll('.nav-btn');
+
+  tabs.forEach(tab => tab.classList.remove('active'));
+  buttons.forEach(btn => btn.classList.remove('active'));
+
+  document.getElementById(tabId).classList.add('active');
+  event.currentTarget.classList.add('active');
+
+  if (tabId === 'kuis') {
+    loadQuiz();
+  }
+}
+
+// Menampilkan Kategori Jenis Zat Aditif
+function showCategory(category) {
+  const display = document.getElementById('category-display');
+  const buttons = document.querySelectorAll('.sub-btn');
+
+  buttons.forEach(btn => btn.classList.remove('active'));
+  event.currentTarget.classList.add('active');
+
+  const data = categoriesData[category];
+
+  display.innerHTML = `
+    <div class="touch-card" style="border-left-color: #27ae60;">
+      <div class="icon">🌿</div>
+      <h4>Bahan Alami</h4>
+      <p>${data.alami}</p>
+    </div>
+    <div class="touch-card" style="border-left-color: #e74c3c;">
+      <div class="icon">🧪</div>
+      <h4>Bahan Buatan / Sintetis</h4>
+      <p>${data.buatan}</p>
+    </div>
+  `;
+}
+
+// Memuat Kuis
+function loadQuiz() {
+  const q = quizData[currentQuizIndex];
+  document.getElementById('question-text').innerText = `${currentQuizIndex + 1}. ${q.question}`;
+  
+  const optionsContainer = document.getElementById('options-container');
+  optionsContainer.innerHTML = '';
+  document.getElementById('feedback').innerText = '';
+  document.getElementById('next-btn').style.display = 'none';
+
+  q.options.forEach((opt, index) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerText = opt;
+    btn.onclick = () => checkAnswer(index, btn);
+    optionsContainer.appendChild(btn);
+  });
+}
+
+// Memeriksa Jawaban Kuis
+function checkAnswer(selectedIndex, selectedBtn) {
+  const q = quizData[currentQuizIndex];
+  const allBtns = document.querySelectorAll('.option-btn');
+  
+  // Nonaktifkan semua tombol setelah memilih
+  allBtns.forEach(btn => btn.disabled = true);
+
+  if (selectedIndex === q.answer) {
+    selectedBtn.classList.add('correct');
+    document.getElementById('feedback').innerText = "✅ Benar! Bagus sekali.";
+    document.getElementById('feedback').style.color = "#27ae60";
+    score++;
+  } else {
+    selectedBtn.classList.add('wrong');
+    allBtns[q.answer].classList.add('correct');
+    document.getElementById('feedback').innerText = "❌ Kurang tepat. Lihat jawaban yang benar!";
+    document.getElementById('feedback').style.color = "#e74c3c";
+  }
+
+  document.getElementById('next-btn').style.display = 'inline-block';
+}
+
+// Lanjut ke Pertanyaan Berikutnya
+function nextQuestion() {
+  currentQuizIndex++;
+  if (currentQuizIndex < quizData.length) {
+    loadQuiz();
+  } else {
+    showFinalResult();
+  }
+}
+
+// Menampilkan Hasil Akhir Kuis
+function showFinalResult() {
+  const container = document.getElementById('quiz-container');
+  container.innerHTML = `
+    <h3>🎉 Kuis Selesai!</h3>
+    <p style="margin-top: 15px; font-size: 1.5rem;">Skor Anda: <strong>${score} / ${quizData.length}</strong></p>
+    <button class="action-btn" onclick="resetQuiz()">Ulangi Kuis 🔄</button>
+  `;
+}
+
+// Reset Kuis
+function resetQuiz() {
+  currentQuizIndex = 0;
+  score = 0;
+  location.reload(); // Memuat ulang halaman untuk mereset kuis
+}
+
+// Inisialisasi tampilan awal saat dokumen dimuat
+document.addEventListener('DOMContentLoaded', () => {
+  showCategory('pewarna');
+});

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MPI IPA Kelas 9 - Zat Aditif</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header Navigasi -->
+  <header>
+    <h1>MEDIA PEMBELAJARAN INTERAKTIF: ZAT ADITIF</h1>
+    <p class="subtitle">IPA Kelas 9 SMP | Otimal untuk IFP / Layar Sentuh</p>
+  </header>
+
+  <nav class="main-nav">
+    <button class="nav-btn active" onclick="switchTab('pengertian')">1. Pengertian</button>
+    <button class="nav-btn" onclick="switchTab('jenis')">2. Jenis-Jenis</button>
+    <button class="nav-btn" onclick="switchTab('dampak')">3. Dampak Kesehatan</button>
+    <button class="nav-btn" onclick="switchTab('kuis')">4. Kuis Interaktif</button>
+  </nav>
+
+  <!-- Kontainer Utama -->
+  <main class="content-container">
+
+    <!-- TAB 1: PENGERTIAN -->
+    <section id="pengertian" class="tab-content active">
+      <h2>Apa itu Zat Aditif?</h2>
+      <div class="card-large">
+        <p><strong>Zat Aditif</strong> adalah bahan yang ditambahkan ke dalam makanan atau minuman selama proses pengolahan, penyimpanan, atau pengepakan untuk maksud dan tujuan tertentu.</p>
+      </div>
+
+      <h3 style="margin-top: 25px;">Fungsi Utama Zat Aditif:</h3>
+      <div class="grid-2">
+        <div class="touch-card">
+          <div class="icon">🎨</div>
+          <h4>Meningkatkan Kualitas Visual</h4>
+          <p>Membuat makanan terlihat lebih menarik dan menggugah selera.</p>
+        </div>
+        <div class="touch-card">
+          <div class="icon">⏳</div>
+          <h4>Meningkatkan Keawetan</h4>
+          <p>Mencegah kerusakan atau pembusukan makanan akibat mikroorganisme.</p>
+        </div>
+        <div class="touch-card">
+          <div class="icon">😋</div>
+          <h4>Meningkatkan Rasa & Aroma</h4>
+          <p>Memberikan cita rasa yang lebih lezat dan aroma yang khas.</p>
+        </div>
+        <div class="touch-card">
+          <div class="icon">🥗</div>
+          <h4>Menjaga Nilai Gizi</h4>
+          <p>Menambahkan vitamin atau mineral yang mungkin hilang selama pengolahan.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: JENIS-JENIS -->
+    <section id="jenis" class="tab-content">
+      <h2>Jenis-Jenis Zat Aditif</h2>
+      <p>Sentuh tombol di bawah untuk melihat perbedaan Zat Aditif Alami dan Buatan:</p>
+
+      <div class="sub-nav">
+        <button class="sub-btn active" onclick="showCategory('pewarna')">Pewarna</button>
+        <button class="sub-btn" onclick="showCategory('pemanis')">Pemanis</button>
+        <button class="sub-btn" onclick="showCategory('pengawet')">Pengawet</button>
+        <button class="sub-btn" onclick="showCategory('penyedap')">Penyedap</button>
+      </div>
+
+      <div id="category-display" class="grid-2" style="margin-top: 20px;">
+        <!-- Konten diisi secara dinamis via JavaScript -->
+      </div>
+    </section>
+
+    <!-- TAB 3: DAMPAK KESEHATAN -->
+    <section id="dampak" class="tab-content">
+      <h2>Dampak Penggunaan Zat Aditif Sintetis/Buatan</h2>
+      <p>Penggunaan zat aditif buatan secara berlebihan dapat menimbulkan dampak negatif bagi tubuh:</p>
+
+      <div class="grid-3">
+        <div class="alert-card">
+          <div class="icon">⚠️</div>
+          <h4>Pewarna Sintetis (e.g. Tartrazin)</h4>
+          <p>Dapat menyebabkan reaksi alergi, gatal-gatal, dan hiperaktivitas pada anak-anak.</p>
+        </div>
+        <div class="alert-card">
+          <div class="icon">⚠️</div>
+          <h4>Pemanis Buatan (e.g. Sakarin/Aspartam)</h4>
+          <p>Penggunaan jangka panjang berlebih berisiko memicu gangguan metabolisme dan kanker (karsinogenik).</p>
+        </div>
+        <div class="alert-card">
+          <div class="icon">⚠️</div>
+          <h4>Penyedap Buatan (MSG Berlebih)</h4>
+          <p>Dapat memicu gejala <em>Chinese Restaurant Syndrome</em> seperti pusing, mual, dan leher kaku.</p>
+        </div>
+      </div>
+
+      <div class="info-box" style="margin-top: 30px;">
+        💡 <strong>Tips Sehat:</strong> Utamakan konsumsi makanan segar dan gunakan zat aditif alami seperti kunyit, daun suji, gula merah, dan rempah-rempah!
+      </div>
+    </section>
+
+    <!-- TAB 4: KUIS INTERAKTIF -->
+    <section id="kuis" class="tab-content">
+      <h2>Kuis Interaktif Zat Aditif</h2>
+      <div id="quiz-container" class="card-large">
+        <div id="question-text" class="question">Pertanyaan akan muncul di sini...</div>
+        <div id="options-container" class="options-grid"></div>
+        <div id="feedback" class="feedback-msg"></div>
+        <button id="next-btn" class="action-btn" style="display: none;" onclick="nextQuestion()">Pertanyaan Selanjutnya ➡️</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>MPI Interaktif IFP/PID - IPA SMP Kelas 9</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
